@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using TulioPaim.Results;
 using Xunit;
@@ -13,15 +12,15 @@ namespace TulioPaim.ResultsTests
             var result = Result.ErrorResult("erro");
             Result<int> resultOfInt = Result<int>.ErrorResult("erro");
 
-            Assert.True(result.Succeeded);
-            Assert.True(resultOfInt.Succeeded);
+            Assert.False(result.Succeeded);
+            Assert.False(resultOfInt.Succeeded);
         }
 
         [Fact]
         public void ShouldBeSucceededWhenSuccessResult()
         {
             var result = Result.SuccessResult();
-            Result<int> resultOfInt = Result<int>.SuccessResult();
+            Result<int> resultOfInt = Result<int>.SuccessResult(1);
 
             Assert.True(result.Succeeded);
             Assert.True(resultOfInt.Succeeded);

@@ -53,15 +53,6 @@ namespace TulioPaim.Results
 
         public T Data { get; set; }
 
-        public new static Result<T> SuccessResult(string message = null)
-        {
-            return new Result<T>
-            {
-                Message = message,
-                Succeeded = true,
-            };
-        }
-
         public static Result<T> SuccessResult(T data, string message = null)
         {
             return new Result<T>
