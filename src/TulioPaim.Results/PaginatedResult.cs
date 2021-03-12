@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TulioPaim.Results
 {
-    public class PaginatedResult<T> : Result<IEnumerable<T>>
+    public class PaginatedResult<T> : ListResult<T>
     {
         /// <summary>
         /// Create a PaginatedResult
@@ -17,9 +17,8 @@ namespace TulioPaim.Results
             IEnumerable<T> data,
             long total,
             int page,
-            int pageSize)
+            int pageSize) : base(data)
         {
-            Data = data;
             Total = total;
             Page = page;
             PageSize = pageSize;
