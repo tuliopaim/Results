@@ -2,78 +2,69 @@
 
 namespace TulioPaim.Results
 {
-    public class Result: ResultBase
+    public class Result : ResultBase
     {
-        protected Result()
+        public Result(string message = null) : base(message)
         {
-            Errors = new List<string>();
+            Succeeded = true;
+            Message = message;
+        }
+
+        public Result(string error, string message = null) : base(error, message)
+        { 
+        }
+
+        public Result(List<string> errors, string message = null) : base(errors, message)
+        {
         }
 
         public static Result SuccessResult(string message = null)
         {
-            return new Result
-            {
-                Message = message,
-                Succeeded = true,
-            };
+            return new Result(message);
         }
 
         public static Result ErrorResult(string error, string message = null)
         {
-            return new Result
-            {
-                Succeeded = false,
-                Errors = new List<string>() { error },
-                Message = message,
-            };
+            return new Result(error, message);
         }
 
         public static Result ErrorResult(List<string> errors, string message = null)
         {
-            return new Result
-            {
-                Succeeded = false,
-                Errors = errors ?? new List<string>(),
-                Message = message,
-            };
+            return new Result(errors, message);
         }
     }
 
     public class Result<T> : ResultBase<T>
     {
-        protected Result()
+        protected Result() : base()
         {
-            Errors = new List<string>();
         }
 
-        public static Result<T> SuccessResult(T data, string message = null)
+        public Result(T data, string message = null) : base(data, message)
         {
-            return new Result<T>
-            {
-                Succeeded = true,
-                Data = data,
-                Message = message
-            };
+        }
+
+        public Result(string error, string message = null) : base(error, message)
+        {
+        }
+
+        public Result(List<string> errors, string message = null) : base(errors, message)
+        {
+        }
+
+        public static Result<T> SuccessResult (T data, string message = null)
+        {
+            return new Result<T>(data, message);
         }
 
         public static Result<T> ErrorResult(string error, string message = null)
         {
-            return new Result<T>
-            {
-                Succeeded = false,
-                Errors = new List<string>() { error },
-                Message = message,
-            };
+            return new Result<T>(error, message);
         }
 
         public static Result<T> ErrorResult(List<string> errors, string message = null)
         {
-            return new Result<T>
-            {
-                Succeeded = false,
-                Errors = errors ?? new List<string>(),
-                Message = message,
-            };
+            return new Result<T>(errors, message);
         }
     }
 }

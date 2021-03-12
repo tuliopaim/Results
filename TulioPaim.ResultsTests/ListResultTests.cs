@@ -31,5 +31,30 @@ namespace TulioPaim.ResultsTests
             Assert.True(result.IsEmpty);
             Assert.True(resultNull.IsEmpty);
         }
+
+        [Fact]
+        public void ShouldNotBeEmptyWhenDataIsNotEmpty()
+        {
+            ListResult<int> result = ListResult<int>.SuccessResult(new List<int> { 1, 2 });
+
+            Assert.False(result.IsEmpty);
+        }
+
+        [Fact]
+        public void DataShouldNeverBeNull()
+        {
+            var result = ListResult<int>
+                .SuccessResult(null);
+
+            var result2 = ListResult<int>
+                .ErrorResult("Error 1");
+
+            var result3 = ListResult<int>
+                .ErrorResult(new List<string> { "Erro 1, Erro 2" });
+
+            Assert.NotNull(result.Data);
+            Assert.NotNull(result2.Data);
+            Assert.NotNull(result3.Data);
+        }
     }
 }
