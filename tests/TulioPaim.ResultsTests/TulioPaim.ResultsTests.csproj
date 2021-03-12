@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\TulioPaim.Results\TulioPaim.Results.csproj" />
+    <ProjectReference Include="..\..\src\TulioPaim.Results\TulioPaim.Results.csproj" />
   </ItemGroup>
 
 </Project>

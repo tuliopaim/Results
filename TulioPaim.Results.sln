@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{33C1007C-196
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B487B51D-D54C-4461-8462-4ED5A149A74C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TulioPaim.ResultsTests", "TulioPaim.ResultsTests\TulioPaim.ResultsTests.csproj", "{E1C408E4-4998-4A9B-8FBA-709D1DE9C762}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TulioPaim.ResultsTests", "tests\TulioPaim.ResultsTests\TulioPaim.ResultsTests.csproj", "{E1C408E4-4998-4A9B-8FBA-709D1DE9C762}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
