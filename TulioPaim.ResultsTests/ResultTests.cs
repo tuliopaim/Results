@@ -45,7 +45,7 @@ namespace TulioPaim.ResultsTests
             Assert.NotNull(successResult.Errors);
             Assert.NotNull(errorResult.Errors);
 
-            var successResultOfInt = Result<int>.SuccessResult();
+            var successResultOfInt = Result<int>.SuccessResult(0);
             var errorResultOfInt = Result<int>.ErrorResult("Erro");
 
             Assert.NotNull(successResultOfInt.Errors);

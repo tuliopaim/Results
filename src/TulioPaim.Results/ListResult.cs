@@ -10,8 +10,6 @@ namespace TulioPaim.Results
             Data = new List<T>();
         }
 
-        public int Total => Data.Count();
-
         public bool IsEmpty => !Data.Any();
 
         public new static ListResult<T> SuccessResult(IEnumerable<T> data, string message = null)
@@ -19,7 +17,7 @@ namespace TulioPaim.Results
             return new ListResult<T>
             {
                 Succeeded = true,
-                Data = data,
+                Data = data ?? new List<T>(),
                 Message = message
             };
         }

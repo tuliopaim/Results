@@ -17,8 +17,9 @@ namespace TulioPaim.Results
             IEnumerable<T> data,
             long total,
             int page,
-            int pageSize) : base(data)
+            int pageSize)
         {
+            Data = data;
             Total = total;
             Page = page;
             PageSize = pageSize;
@@ -29,9 +30,9 @@ namespace TulioPaim.Results
 
         public int Page { get; }
 
-        public int TotalPages { get; }
+        public long Total { get; set; }
 
-        public long Total { get; }
+        public int TotalPages { get; }
 
         public bool HasPrevPage => Page > 1;
 

@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace TulioPaim.Results
 {
-    public class Result: IResult
+    public class Result: ResultBase
     {
         protected Result()
         {
             Errors = new List<string>();
         }
-
-        public string Message { get; set; }
-
-        public List<string> Errors { get; set; }
-
-        public bool Succeeded { get; set; }
 
         public static Result SuccessResult(string message = null)
         {
@@ -46,12 +39,12 @@ namespace TulioPaim.Results
         }
     }
 
-    public class Result<T> : Result, IResult<T>
+    public class Result<T> : ResultBase<T>
     {
-        protected Result() : base()
-        {}
-
-        public T Data { get; set; }
+        protected Result()
+        {
+            Errors = new List<string>();
+        }
 
         public static Result<T> SuccessResult(T data, string message = null)
         {
@@ -63,7 +56,7 @@ namespace TulioPaim.Results
             };
         }
 
-        public new static Result<T> ErrorResult(string error, string message = null)
+        public static Result<T> ErrorResult(string error, string message = null)
         {
             return new Result<T>
             {
@@ -73,7 +66,7 @@ namespace TulioPaim.Results
             };
         }
 
-        public new static Result<T> ErrorResult(List<string> errors, string message = null)
+        public static Result<T> ErrorResult(List<string> errors, string message = null)
         {
             return new Result<T>
             {

@@ -11,7 +11,7 @@ namespace TulioPaim.ResultsTests
         {
             ListResult<int> result = ListResult<int>.ErrorResult("erro");
 
-            Assert.True(result.Succeeded);
+            Assert.False(result.Succeeded);
         }
 
         [Fact]
@@ -22,20 +22,14 @@ namespace TulioPaim.ResultsTests
             Assert.True(result.Succeeded);
         }
 
-        [Theory]
-        [InlineData(1)]
-        [InlineData(100)]
-        [InlineData(533)]
-        public void ShouldReturnTheCorrectTotal(int size)
+        [Fact]
+        public void ShouldBeEmptyWhenDataIsEmpty()
         {
-            var list = new List<int>(size);
+            ListResult<int> result = ListResult<int>.SuccessResult(new List<int>());
+            ListResult<int> resultNull = ListResult<int>.SuccessResult(null);
 
-            var successResult = ListResult<int>.SuccessResult(list);
-            var errorResult = ListResult<int>.ErrorResult("Erro");
-
-            Assert.Equal(successResult.Total, size);
-            Assert.Equal(errorResult.Total, size);
+            Assert.True(result.IsEmpty);
+            Assert.True(resultNull.IsEmpty);
         }
-
     }
 }
