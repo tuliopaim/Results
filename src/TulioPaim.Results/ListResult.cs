@@ -1,16 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TulioPaim.Results
 {
     public class ListResult<T> : Result<IEnumerable<T>>
     {
-        public ListResult(IEnumerable<T> data)
+        public ListResult() : base()
         {
-            Data = data;
+            Data = new List<T>();
+        }
+
+        public int Total => Data.Count();
+
+        public bool IsEmpty => !Data.Any();
+
+        public new static ListResult<T> SuccessResult(IEnumerable<T> data, string message = null)
+        {
+            return new ListResult<T>
+            {
+                Succeeded = true,
+                Data = data,
+                Message = message
+            };
+        }
+
+        public new static ListResult<T> ErrorResult(string error, string message = null)
+        {
+            return new ListResult<T>
+            {
+                Succeeded = false,
+                Errors = new List<string>() { error },
+                Message = message,
+            };
+        }
+
+        public new static ListResult<T> ErrorResult(List<string> errors, string message = null)
+        {
+            return new ListResult<T>
+            {
+                Succeeded = false,
+                Errors = errors ?? new List<string>(),
+                Message = message,
+            };
         }
     }
 }
