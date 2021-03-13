@@ -62,7 +62,7 @@ namespace TulioPaim.Results
 
         private void ClearData()
         {
-            if (!DataAlreadyClean())
+            if (HasData())
             {
                 Data = new List<T>();
                 PageSize = default;
@@ -71,13 +71,13 @@ namespace TulioPaim.Results
             }
         }
 
-        private bool DataAlreadyClean()
+        private bool HasData()
         {
-            return !Data.Any()
-                && PageSize == default
-                && Page == default
-                && Total == default
-                && TotalPages == default;
+            return Data.Any()
+                || PageSize != default
+                || Page != default
+                || Total != default
+                || TotalPages != default;
         }
 
         public static PaginatedResult<T> SuccessResult(
