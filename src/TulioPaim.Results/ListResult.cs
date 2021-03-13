@@ -42,17 +42,17 @@ namespace TulioPaim.Results
             }
         }
 
-        public new static ListResult<T> SuccessResult(IEnumerable<T> data, string message = null)
+        public new static ListResult<T> Success(IEnumerable<T> data, string message = null)
         {
             return new ListResult<T>(data, message);
         }
 
-        public new static ListResult<T> ErrorResult(string error, string message = null)
+        public new static ListResult<T> Error(string error, string message = null)
         {
             return new ListResult<T>(error, message);
         }
 
-        public new static ListResult<T> ErrorResult(List<string> errors, string message = null)
+        public new static ListResult<T> Error(List<string> errors, string message = null)
         {
             return new ListResult<T>(errors, message);
         }

@@ -22,17 +22,17 @@ namespace TulioPaim.Results
         {
         }
 
-        public static Result SuccessResult(string message = null)
+        public static Result Success(string message = null)
         {
             return new Result(message);
         }
 
-        public static Result ErrorResult(string error, string message = null)
+        public static Result Error(string error, string message = null)
         {
             return new Result(error, message);
         }
 
-        public static Result ErrorResult(List<string> errors, string message = null)
+        public static Result Error(List<string> errors, string message = null)
         {
             return new Result(errors, message);
         }
@@ -59,17 +59,17 @@ namespace TulioPaim.Results
 
         public T Data { get; protected set; }
 
-        public static Result<T> SuccessResult(T data, string message = null)
+        public static Result<T> Success(T data, string message = null)
         {
             return new Result<T>(data, message);
         }
 
-        public static Result<T> ErrorResult(string error, string message = null)
+        public static Result<T> Error(string error, string message = null)
         {
             return new Result<T>(error, message);
         }
 
-        public static Result<T> ErrorResult(List<string> errors, string message = null)
+        public static Result<T> Error(List<string> errors, string message = null)
         {
             return new Result<T>(errors, message);
         }

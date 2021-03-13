@@ -10,8 +10,8 @@ namespace TulioPaim.ResultsTests
         [Fact]
         public void ShouldNotBeSucceededWhenErrorResult()
         {
-            var result = Result.ErrorResult("erro");
-            Result<int> resultOfInt = Result<int>.ErrorResult("erro");
+            var result = Result.Error("erro");
+            Result<int> resultOfInt = Result<int>.Error("erro");
 
             Assert.False(result.Succeeded);
             Assert.False(resultOfInt.Succeeded);
@@ -43,12 +43,12 @@ namespace TulioPaim.ResultsTests
             var errors = new List<string> { "Erro 1", "Erro 2" };
 
             var successResult = new Result();
-            var successResult2 = Result.SuccessResult();
+            var successResult2 = Result.Success();
 
             var errorResult = new Result("Error", null);
             var errorResult2 = new Result(errors);
-            var errorResult3 = Result.ErrorResult("Erro");
-            var errorResult4 = Result.ErrorResult(errors);
+            var errorResult3 = Result.Error("Erro");
+            var errorResult4 = Result.Error(errors);
 
             Assert.NotNull(successResult.Errors);
             Assert.NotNull(successResult2.Errors);
@@ -58,12 +58,12 @@ namespace TulioPaim.ResultsTests
             Assert.NotNull(errorResult4.Errors);
 
             var successResultOfInt = new Result<int>(1);
-            var successResultOfInt2 = Result<int>.SuccessResult(1);
+            var successResultOfInt2 = Result<int>.Success(1);
 
             var errorResultOfInt = new Result<int>("Error");
             var errorResultOfInt2 = new Result<int>(errors);
-            var errorResultOfInt3 = Result<int>.ErrorResult("Erro");
-            var errorResultOfInt4 = Result<int>.ErrorResult(errors);
+            var errorResultOfInt3 = Result<int>.Error("Erro");
+            var errorResultOfInt4 = Result<int>.Error(errors);
 
             Assert.NotNull(successResultOfInt.Errors);
             Assert.NotNull(successResultOfInt2.Errors);
@@ -80,10 +80,10 @@ namespace TulioPaim.ResultsTests
             var error = "Erro 1";
 
             var result = new Result();
-            var result2 = Result.SuccessResult();
+            var result2 = Result.Success();
 
             var resultOfInt = new Result<int>(1);
-            var resultOfInt2 = Result<int>.SuccessResult(1);
+            var resultOfInt2 = Result<int>.Success(1);
 
             result.AddError(error);
             result2.AddError(error);
@@ -102,10 +102,10 @@ namespace TulioPaim.ResultsTests
             var error = "Erro 1";
 
             var result = new Result();
-            var result2 = Result.SuccessResult();
+            var result2 = Result.Success();
 
             var resultOfInt = new Result<int>(1);
-            var resultOfInt2 = Result<int>.SuccessResult(1);
+            var resultOfInt2 = Result<int>.Success(1);
 
             result.AddError(error);
             result.AddError(error);
@@ -134,10 +134,10 @@ namespace TulioPaim.ResultsTests
             Assert.Equal(5, resultOfInt2.Errors.Count);
 
             var errorResult = new Result("Error", null);
-            var errorResult2 = Result.ErrorResult("Error");
+            var errorResult2 = Result.Error("Error");
 
             var errorResultOfInt = new Result<int>("Error");
-            var errorResultOfInt2 = Result<int>.ErrorResult("Error");
+            var errorResultOfInt2 = Result<int>.Error("Error");
 
             errorResult.AddError(error);
             errorResult.AddError(error);

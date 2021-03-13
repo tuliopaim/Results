@@ -9,7 +9,7 @@ namespace TulioPaim.ResultsTests
         [Fact]
         public void ShouldNotBeSucceededWhenErrorResult()
         {
-            PaginatedResult<int> result = PaginatedResult<int>.ErrorResult("erro");
+            PaginatedResult<int> result = PaginatedResult<int>.Error("erro");
 
             Assert.False(result.Succeeded);
         }
@@ -38,10 +38,10 @@ namespace TulioPaim.ResultsTests
                 1);
 
             var result2 = PaginatedResult<int>
-                .ErrorResult("Error 1");
+                .Error("Error 1");
 
             var result3 = PaginatedResult<int>
-                .ErrorResult(new List<string> { "Erro 1, Erro 2" });
+                .Error(new List<string> { "Erro 1, Erro 2" });
 
             Assert.NotNull(result.Data);
             Assert.NotNull(result2.Data);
@@ -100,7 +100,7 @@ namespace TulioPaim.ResultsTests
             Assert.Equal(3, result.Errors.Count);
             Assert.Equal(5, result2.Errors.Count);
 
-            var resultError = PaginatedResult<int>.ErrorResult("Error");
+            var resultError = PaginatedResult<int>.Error("Error");
             var resultError2 = new PaginatedResult<int>("Error");
 
             resultError.AddError("Error");

@@ -95,12 +95,12 @@ namespace TulioPaim.Results
             return new PaginatedResult<T>(data, total, page, pageSize, message);
         }
 
-        public static PaginatedResult<T> ErrorResult(string error, string message = null)
+        public static PaginatedResult<T> Error(string error, string message = null)
         {
             return new PaginatedResult<T>(error, message);
         }
 
-        public static PaginatedResult<T> ErrorResult(List<string> errors, string message = null)
+        public static PaginatedResult<T> Error(List<string> errors, string message = null)
         {
             return new PaginatedResult<T>(errors, message);
         }

@@ -13,12 +13,12 @@ namespace TulioPaim.Results.Samples
             if (a < 0 || b < 0)
             {
                 return Result<int>
-                    .ErrorResult("You can only calc positive numbers :D");
+                    .Error("You can only calc positive numbers :D");
             }
 
             var total = a + b;
 
-            return Result<int>.SuccessResult(total);
+            return Result<int>.Success(total);
         }
 
         public static Result<int> NegativeOnlyCalc(int a, int b)
@@ -37,14 +37,14 @@ namespace TulioPaim.Results.Samples
         {
             var firstName = FakeService.SelectFirstName();
 
-            return Result<string>.SuccessResult(firstName);
+            return Result<string>.Success(firstName);
         }
 
         public static ListResult<string> SelectAllNames()
         {
             var list = FakeService.SelectAllNames();
 
-            return ListResult<string>.SuccessResult(list);
+            return ListResult<string>.Success(list);
         }
 
         public static PaginatedResult<string> SelectPaginated()
@@ -86,7 +86,7 @@ namespace TulioPaim.Results.Samples
             {
                 var name = FakeService.SelectNameByIndex(index);
 
-                return Result<string>.SuccessResult(name);
+                return Result<string>.Success(name);
             }
             catch(Exception ex)
             {

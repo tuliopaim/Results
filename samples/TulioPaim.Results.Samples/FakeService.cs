@@ -42,12 +42,12 @@ namespace TulioPaim.Results.Samples
             {
                 var errorMessage = $"Error, {number} is odd!";
 
-                return Result.ErrorResult(errorMessage);
+                return Result.Error(errorMessage);
             }
 
             var successMessage = $"Success, {number} is not odd!";
 
-            return Result.SuccessResult(successMessage);
+            return Result.Success(successMessage);
         }
 
         public static string SelectNameByIndex(int index)
