@@ -36,10 +36,6 @@ namespace TulioPaim.Results
 
     public class Result<T> : ResultBase<T>
     {
-        protected Result() : base()
-        {
-        }
-
         public Result(T data, string message = null) : base(data, message)
         {
         }
