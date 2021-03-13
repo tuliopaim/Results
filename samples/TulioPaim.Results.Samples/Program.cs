@@ -33,6 +33,9 @@ namespace TulioPaim.Results.Samples
             PrintFunctionName(nameof(ResultSamples.NegativeOnlyCalc));
             Serialize(ResultSamples.NegativeOnlyCalc(-4, -3));
 
+            PrintFunctionName(nameof(ResultSamples.SelectNameByIndex));
+            Serialize(ResultSamples.SelectNameByIndex(15));
+
             Console.ReadLine();
         }
 

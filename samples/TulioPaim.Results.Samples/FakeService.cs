@@ -49,5 +49,10 @@ namespace TulioPaim.Results.Samples
 
             return Result.SuccessResult(successMessage);
         }
+
+        public static string SelectNameByIndex(int index)
+        {
+            return Names[index];
+        }
     }
 }

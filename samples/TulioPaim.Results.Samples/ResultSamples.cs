@@ -80,5 +80,18 @@ namespace TulioPaim.Results.Samples
             }
         }
 
+        public static Result<string> SelectNameByIndex(int index)
+        {
+            try
+            {
+                var name = FakeService.SelectNameByIndex(index);
+
+                return Result<string>.SuccessResult(name);
+            }
+            catch(Exception ex)
+            {
+                return new Result<string>(ex);
+            }
+        }
     }
 }
