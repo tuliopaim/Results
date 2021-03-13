@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace TulioPaim.Results
@@ -18,6 +19,10 @@ namespace TulioPaim.Results
         public ListResult(List<string> errors, string message = null) : base(errors, message)
         {
             Data = new List<T>();
+        }
+
+        public ListResult(Exception ex) : base(ex)
+        {
         }
 
         public bool IsEmpty => !Data.Any();

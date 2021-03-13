@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace TulioPaim.Results
 {
-    public class PaginatedResult<T> : ResultBase<IEnumerable<T>>
+    public class PaginatedResult<T> : ResultBase
     {
         /// <summary>
         /// Create a PaginatedResult
@@ -19,14 +19,15 @@ namespace TulioPaim.Results
             int page,
             int pageSize,
             string message = null)
-            : base(data, message)
+            : base(message)
         {
             Data = data ?? new List<T>();
             Total = total;
             Page = page;
             PageSize = pageSize;
-            Message = message;
         }
+
+        public IEnumerable<T> Data { get; set; }
 
         public PaginatedResult(string error, string message = null) : base(error, message)
         {
@@ -36,6 +37,10 @@ namespace TulioPaim.Results
         public PaginatedResult(List<string> errors, string message = null) : base(errors, message)
         {
             Data = new List<T>();
+        }
+
+        public PaginatedResult(Exception ex) : base(ex)
+        {
         }
 
         public int PageSize { get; private set; }

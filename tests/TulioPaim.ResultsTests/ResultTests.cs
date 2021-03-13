@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TulioPaim.Results;
 using Xunit;
@@ -151,5 +152,30 @@ namespace TulioPaim.ResultsTests
             Assert.Equal(2, errorResultOfInt.Errors.Count);
             Assert.Equal(2, errorResultOfInt2.Errors.Count);
         }
+
+        [Fact]
+        public void ShouldNotBeSucceededOnException()
+        {
+            var exception = new Exception("Exception message");
+
+            var result = new Result(exception);
+            var resultOfInt = new Result<int>(exception);
+
+            Assert.False(result.Succeeded);
+            Assert.False(resultOfInt.Succeeded);
+        }
+
+        [Fact]
+        public void ShouldAddExceptionInErrors()
+        {
+            var exception = new Exception("Exception");
+
+            var result = new Result(exception);
+            var resultOfInt = new Result<int>(exception);
+
+            Assert.Single(result.Errors);
+            Assert.Single(resultOfInt.Errors);
+        }
+
     }
 }

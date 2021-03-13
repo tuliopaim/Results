@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace TulioPaim.Results
 {
     public class Result : ResultBase
     {
-        public Result(string message = null) : base()
+        public Result(string message = null) : base(message)
         {
             Succeeded = true;
-            Message = message;
         }
 
         public Result(string error, string message = null) : base(error, message)
@@ -15,6 +15,10 @@ namespace TulioPaim.Results
         }
 
         public Result(List<string> errors, string message = null) : base(errors, message)
+        {
+        }
+
+        public Result(Exception ex) : base(ex)
         {
         }
 
@@ -34,10 +38,11 @@ namespace TulioPaim.Results
         }
     }
 
-    public class Result<T> : ResultBase<T>
+    public class Result<T> : ResultBase
     {
-        public Result(T data, string message = null) : base(data, message)
+        public Result(T data, string message = null) : base(message)
         {
+            Data = data;
         }
 
         public Result(string error, string message = null) : base(error, message)
@@ -47,6 +52,12 @@ namespace TulioPaim.Results
         public Result(List<string> errors, string message = null) : base(errors, message)
         {
         }
+
+        public Result(Exception ex) : base(ex)
+        {
+        }
+
+        public T Data { get; protected set; }
 
         public static Result<T> SuccessResult(T data, string message = null)
         {

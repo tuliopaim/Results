@@ -5,9 +5,11 @@ namespace TulioPaim.Results
 {
     public abstract class ResultBase
     {
-        protected ResultBase()
+        protected ResultBase(string message = null)
         {
+            Succeeded = true;
             Errors = new List<string>();
+            Message = message;
         }
 
         protected ResultBase(string error, string message = null)
@@ -26,16 +28,9 @@ namespace TulioPaim.Results
 
         protected ResultBase(Exception exception)
         {
+            Errors = new List<string>();
+
             AddError(exception.ToString());
-
-            var innerException = exception.InnerException;
-            var maxDepth = 3;
-
-            while (innerException is not null || maxDepth-- > 0)
-            {
-                AddError(innerException.ToString());
-                innerException = innerException.InnerException;
-            }
         }
 
         public string Message { get; set; }
@@ -47,38 +42,6 @@ namespace TulioPaim.Results
         public virtual void AddError(string error)
         {
             Succeeded = false;
-            Errors.Add(error);
-        }
-    }
-
-    public abstract class ResultBase<T> : ResultBase
-    {
-        protected ResultBase(string error, string message = null) : base(error, message)
-        {
-        }
-
-        protected ResultBase(List<string> errors, string message = null) : base(errors, message)
-        {
-        }
-
-        protected ResultBase(Exception exception) : base(exception)
-        {
-        }
-
-        protected ResultBase(T data, string message = null) : base()
-        {
-            Succeeded = true;
-            Data = data;
-            Message = message;
-        }
-
-
-        public T Data { get; set; }
-
-        public override void AddError(string error)
-        {
-            Succeeded = false;
-            Data = default;
             Errors.Add(error);
         }
     }
