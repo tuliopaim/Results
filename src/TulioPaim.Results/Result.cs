@@ -52,13 +52,6 @@ namespace TulioPaim.Results
         {
         }
 
-        public override void AddError(string error)
-        {
-            Succeeded = false;
-            Data = default;
-            Errors.Add(error);
-        }
-
         public static Result<T> SuccessResult(T data, string message = null)
         {
             return new Result<T>(data, message);
