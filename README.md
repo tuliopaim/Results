@@ -21,5 +21,6 @@ Checkout the [samples project](https://github.com/tuliopaim/TulioPaim.Results/tr
 - [x] Support for Generic Data
 - [x] List Result
 - [x] Paginated Result
-- [ ] Support for Exceptions
+- [x] Support for Exceptions
+- [ ] Support for ModelState
 - [ ] Support for FluentValidation
