@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace TulioPaim.Results
 {
@@ -9,18 +10,32 @@ namespace TulioPaim.Results
             Errors = new List<string>();
         }
 
-        protected ResultBase(string error, string message = null) : base()
+        protected ResultBase(string error, string message = null)
         {
             Succeeded = false;
             Errors = new List<string>() { error };
             Message = message;
         }
 
-        protected ResultBase(List<string> errors, string message = null) : base()
+        protected ResultBase(List<string> errors, string message = null)
         {
             Succeeded = false;
             Errors = errors ?? new List<string>();
             Message = message;
+        }
+
+        protected ResultBase(Exception exception)
+        {
+            AddError(exception.ToString());
+
+            var innerException = exception.InnerException;
+            var maxDepth = 3;
+
+            while (innerException is not null || maxDepth-- > 0)
+            {
+                AddError(innerException.ToString());
+                innerException = innerException.InnerException;
+            }
         }
 
         public string Message { get; set; }
@@ -38,15 +53,15 @@ namespace TulioPaim.Results
 
     public abstract class ResultBase<T> : ResultBase
     {
-        protected ResultBase() : base()
-        {
-        }
-
         protected ResultBase(string error, string message = null) : base(error, message)
         {
         }
 
         protected ResultBase(List<string> errors, string message = null) : base(errors, message)
+        {
+        }
+
+        protected ResultBase(Exception exception) : base(exception)
         {
         }
 
@@ -56,6 +71,7 @@ namespace TulioPaim.Results
             Data = data;
             Message = message;
         }
+
 
         public T Data { get; set; }
 
