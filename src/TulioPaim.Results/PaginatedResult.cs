@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TulioPaim.Results
 {
@@ -17,15 +18,13 @@ namespace TulioPaim.Results
             long total,
             int page,
             int pageSize,
-            string message = null) 
+            string message = null)
             : base(data, message)
         {
             Data = data ?? new List<T>();
             Total = total;
             Page = page;
             PageSize = pageSize;
-            TotalPages = (int)Math.Ceiling(Total / (double)PageSize);
-
             Message = message;
         }
 
@@ -45,11 +44,41 @@ namespace TulioPaim.Results
 
         public long Total { get; private set; }
 
-        public int TotalPages { get; private set; }
+        public int TotalPages =>
+            PageSize == 0
+            ? 0
+            : (int)Math.Ceiling(Total / (double)PageSize);
 
         public bool HasPrevPage => Page > 1;
 
         public bool HasNextPage => Page < TotalPages;
+
+        public override void AddError(string error)
+        {
+            Succeeded = false;
+            ClearData();
+            Errors.Add(error);
+        }
+
+        private void ClearData()
+        {
+            if (!DataAlreadyClean())
+            {
+                Data = new List<T>();
+                PageSize = default;
+                Page = default;
+                Total = default;
+            }
+        }
+
+        private bool DataAlreadyClean()
+        {
+            return !Data.Any()
+                && PageSize == default
+                && Page == default
+                && Total == default
+                && TotalPages == default;
+        }
 
         public static PaginatedResult<T> SuccessResult(
             IEnumerable<T> data,

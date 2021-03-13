@@ -4,14 +4,14 @@ namespace TulioPaim.Results
 {
     public class Result : ResultBase
     {
-        public Result(string message = null) : base(message)
+        public Result(string message = null) : base()
         {
             Succeeded = true;
             Message = message;
         }
 
         public Result(string error, string message = null) : base(error, message)
-        { 
+        {
         }
 
         public Result(List<string> errors, string message = null) : base(errors, message)
@@ -52,7 +52,14 @@ namespace TulioPaim.Results
         {
         }
 
-        public static Result<T> SuccessResult (T data, string message = null)
+        public override void AddError(string error)
+        {
+            Succeeded = false;
+            Data = default;
+            Errors.Add(error);
+        }
+
+        public static Result<T> SuccessResult(T data, string message = null)
         {
             return new Result<T>(data, message);
         }

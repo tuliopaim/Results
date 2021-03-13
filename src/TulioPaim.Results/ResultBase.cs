@@ -25,10 +25,15 @@ namespace TulioPaim.Results
 
         public string Message { get; set; }
 
-        public bool Succeeded { get; set; }
+        public bool Succeeded { get; protected set; }
 
-        public List<string> Errors { get; set; }
+        public List<string> Errors { get; protected set; }
 
+        public virtual void AddError(string error)
+        {
+            Succeeded = false;
+            Errors.Add(error);
+        }
     }
 
     public abstract class ResultBase<T> : ResultBase
@@ -54,5 +59,11 @@ namespace TulioPaim.Results
 
         public T Data { get; set; }
 
+        public override void AddError(string error)
+        {
+            Succeeded = false;
+            Data = default;
+            Errors.Add(error);
+        }
     }
 }
