@@ -5,6 +5,8 @@ A Result wrapper for Result, ListResult and PaginatedResult with generic data su
   - [CLI](#i.cli)
   - [Package Manager Console](#i.pmc)
 - [Usage](#usage)
+  - [Samples](#u.samples)   
+  - [Wiki](#u.wiki)
   
 
 ## <a name="install"></a>Install
@@ -20,9 +22,9 @@ Install-Package TulioPaim.Results
 
 ## <a name="usage"></a>Usage
 
-Checkout the [samples project](https://github.com/tuliopaim/TulioPaim.Results/tree/master/samples/TulioPaim.Results.Samples/) for examples
+ <a name="u.samples"></a>Checkout the [samples project](https://github.com/tuliopaim/TulioPaim.Results/tree/master/samples/TulioPaim.Results.Samples/) for examples
 
-Checkout the [Wiki](https://github.com/tuliopaim/Results/wiki/Usage)
+ <a name="u.wiki"></a>Checkout the [Wiki](https://github.com/tuliopaim/Results/wiki/Usage)
 
     
 
