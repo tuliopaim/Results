@@ -4,7 +4,7 @@ A Result wrapper for Result, ListResult and PaginatedResult with generic data su
 - [Install](#install)
   - [CLI](#i.cli)
   - [Package Manager Console](#i.pmc)
-- [Usage]()
+- [Usage](#usage)
   - [Constructors, Static Methods and Structure](#constructors)
     - [Constructors](#c.constructors)
     - [Static Methods](#c.static)
