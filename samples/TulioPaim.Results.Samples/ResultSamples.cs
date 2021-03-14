@@ -52,7 +52,7 @@ namespace TulioPaim.Results.Samples
 
             var result = FakeService.SelectPaginated(page, pageSize);
 
-            return PaginatedResult<string>.SuccessResult(
+            return PaginatedResult<string>.Success(
                 result,
                 totalInDb,
                 page,

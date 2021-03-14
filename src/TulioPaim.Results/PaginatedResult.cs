@@ -70,7 +70,7 @@ namespace TulioPaim.Results
             Total = default;
         }
 
-        public static PaginatedResult<T> SuccessResult(
+        public static PaginatedResult<T> Success(
             IEnumerable<T> data,
             long total,
             int page,

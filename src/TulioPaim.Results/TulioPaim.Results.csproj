@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>    
     <PackageId>TulioPaim.Results</PackageId>
-    <Version>1.4.0</Version>
+    <Version>1.5.0</Version>
     <Authors>tulio_paim</Authors>
     <Company>tulio_paim</Company>
   </PropertyGroup>

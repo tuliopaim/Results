@@ -18,7 +18,7 @@ namespace TulioPaim.ResultsTests
         public void ShouldBeSucceededWhenSuccessResult()
         {
             var result = PaginatedResult<int>
-                .SuccessResult(
+                .Success(
                 new List<int>() { 1 },
                 1,
                 1,
@@ -31,7 +31,7 @@ namespace TulioPaim.ResultsTests
         public void DataShouldNeverBeNull()
         {
             var result = PaginatedResult<int>
-                .SuccessResult(
+                .Success(
                 null,
                 1,
                 1,
@@ -52,7 +52,7 @@ namespace TulioPaim.ResultsTests
         public void ShouldNotBeSucceededWhenAddError()
         {
             var result = PaginatedResult<int>
-               .SuccessResult(
+               .Success(
                null,
                1,
                1,
@@ -75,7 +75,7 @@ namespace TulioPaim.ResultsTests
         public void ShouldAddErrorsCorrectly()
         {
             var result = PaginatedResult<int>
-                  .SuccessResult(
+                  .Success(
                   null,
                   1,
                   1,
@@ -116,7 +116,7 @@ namespace TulioPaim.ResultsTests
         {
             var list = new List<int> { 1, 2, 3 };
             var result = PaginatedResult<int>
-                  .SuccessResult(
+                  .Success(
                   list,
                   3,
                   1,
@@ -143,7 +143,7 @@ namespace TulioPaim.ResultsTests
         public void ShouldCalculateTotalPagesCorrectly(long total, int pageSize, int totalPages)
         {
             var result = PaginatedResult<int>
-                .SuccessResult(
+                .Success(
                 new List<int>() { 1 },
                 total,
                 1,
