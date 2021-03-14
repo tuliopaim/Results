@@ -11,30 +11,16 @@ namespace TulioPaim.ResultsTests
         public void ShouldNotBeSucceededWhenErrorResult()
         {
             var result = Result.Error("erro");
-            Result<int> resultOfInt = Result<int>.Error("erro");
 
             Assert.False(result.Succeeded);
-            Assert.False(resultOfInt.Succeeded);
         }
 
         [Fact]
         public void ShouldBeSucceededWhenCreateByConstructor()
         {
             var result = new Result();
-            Result<int> resultOfInt = new Result<int>(1);
 
             Assert.True(result.Succeeded);
-            Assert.True(resultOfInt.Succeeded);
-        }
-
-        [Fact]
-        public void DataShouldBeOfTheSameType()
-        {
-            var data = new List<int> { 1, 2, 3 };
-
-            var result = new Result<List<int>>(data);
-
-            Assert.True(result.Data.GetType() == data.GetType());
         }
 
         [Fact]
@@ -56,21 +42,6 @@ namespace TulioPaim.ResultsTests
             Assert.NotNull(errorResult2.Errors);
             Assert.NotNull(errorResult3.Errors);
             Assert.NotNull(errorResult4.Errors);
-
-            var successResultOfInt = new Result<int>(1);
-            var successResultOfInt2 = Result<int>.Success(1);
-
-            var errorResultOfInt = new Result<int>("Error");
-            var errorResultOfInt2 = new Result<int>(errors);
-            var errorResultOfInt3 = Result<int>.Error("Erro");
-            var errorResultOfInt4 = Result<int>.Error(errors);
-
-            Assert.NotNull(successResultOfInt.Errors);
-            Assert.NotNull(successResultOfInt2.Errors);
-            Assert.NotNull(errorResultOfInt.Errors);
-            Assert.NotNull(errorResultOfInt2.Errors);
-            Assert.NotNull(errorResultOfInt3.Errors);
-            Assert.NotNull(errorResultOfInt4.Errors);
         }
 
 
@@ -82,18 +53,11 @@ namespace TulioPaim.ResultsTests
             var result = new Result();
             var result2 = Result.Success();
 
-            var resultOfInt = new Result<int>(1);
-            var resultOfInt2 = Result<int>.Success(1);
-
             result.AddError(error);
             result2.AddError(error);
-            resultOfInt.AddError(error);
-            resultOfInt2.AddError(error);
 
             Assert.False(result.Succeeded);
             Assert.False(result2.Succeeded);
-            Assert.False(resultOfInt.Succeeded);
-            Assert.False(resultOfInt2.Succeeded);
         }
 
         [Fact]
@@ -104,9 +68,6 @@ namespace TulioPaim.ResultsTests
             var result = new Result();
             var result2 = Result.Success();
 
-            var resultOfInt = new Result<int>(1);
-            var resultOfInt2 = Result<int>.Success(1);
-
             result.AddError(error);
             result.AddError(error);
             result.AddError(error);
@@ -116,41 +77,21 @@ namespace TulioPaim.ResultsTests
             result2.AddError(error);
             result2.AddError(error);
             result2.AddError(error);
-
-            resultOfInt.AddError(error);
-            resultOfInt.AddError(error);
-            resultOfInt.AddError(error);
-            resultOfInt.AddError(error);
-
-            resultOfInt2.AddError(error);
-            resultOfInt2.AddError(error);
-            resultOfInt2.AddError(error);
-            resultOfInt2.AddError(error);
-            resultOfInt2.AddError(error);
 
             Assert.Equal(5, result.Errors.Count);
             Assert.Equal(3, result2.Errors.Count);
-            Assert.Equal(4, resultOfInt.Errors.Count);
-            Assert.Equal(5, resultOfInt2.Errors.Count);
 
             var errorResult = new Result("Error", null);
             var errorResult2 = Result.Error("Error");
-
-            var errorResultOfInt = new Result<int>("Error");
-            var errorResultOfInt2 = Result<int>.Error("Error");
 
             errorResult.AddError(error);
             errorResult.AddError(error);
 
             errorResult2.AddError(error);
 
-            errorResultOfInt.AddError(error);
-            errorResultOfInt2.AddError(error);
 
             Assert.Equal(3, errorResult.Errors.Count);
             Assert.Equal(2, errorResult2.Errors.Count);
-            Assert.Equal(2, errorResultOfInt.Errors.Count);
-            Assert.Equal(2, errorResultOfInt2.Errors.Count);
         }
 
         [Fact]
@@ -159,10 +100,8 @@ namespace TulioPaim.ResultsTests
             var exception = new Exception("Exception message");
 
             var result = new Result(exception);
-            var resultOfInt = new Result<int>(exception);
 
             Assert.False(result.Succeeded);
-            Assert.False(resultOfInt.Succeeded);
         }
 
         [Fact]
@@ -171,11 +110,8 @@ namespace TulioPaim.ResultsTests
             var exception = new Exception("Exception");
 
             var result = new Result(exception);
-            var resultOfInt = new Result<int>(exception);
 
             Assert.Single(result.Errors);
-            Assert.Single(resultOfInt.Errors);
         }
-
     }
 }
