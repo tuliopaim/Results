@@ -14,10 +14,10 @@ A Result wrapper for Result, ListResult and PaginatedResult with generic data su
     - [Structure](#e.structure)
   - [Returning Data](#data)
     - [Constructors](#d.constructors)
-    - [Usage and Structure](#d.e.usage)
+    - [Usage and Structure](#d.usage)
   - [Returning a list](#list)
     - [Usage](#l.usage)
-    - [Structure](#l.e.structure)
+    - [Structure](#l.structure)
   - [Paginated result](#paginated)
     - [Parameters and Usage](#p.params)
     - [Structure](#p.structure)
@@ -42,21 +42,21 @@ Checkout the [samples project](https://github.com/tuliopaim/TulioPaim.Results/tr
 #### <a name="c.constructors"></a>Constructors
 ``` csharp
 //success
-public Result(bool succeeded = true, string message = null)
+public Result(bool succeeded = true, string message = null);
 
 //error
-public Result(string error, string message = null)
-public Result(List<string> errors, string message = null)
-public Result(Exception exception)
+public Result(string error, string message = null);
+public Result(List<string> errors, string message = null);
+public Result(Exception exception);
 ``` 
 
 #### <a name="c.static"></a>Static methods
 ``` csharp
-public static Result Success(string message = null)
+public static Result Success(string message = null);
 
-public static Result Error(string error, string message = null)
-public static Result Error(List<string> errors, string message = null)
-public static Result Error(Exception exception)
+public static Result Error(string error, string message = null);
+public static Result Error(List<string> errors, string message = null);
+public static Result Error(Exception exception);
 ``` 
 
 #### <a name="c.structure"></a>Structure of a Result:
@@ -114,7 +114,7 @@ public static Result<T> Success(T data, string message = null);
 //same other error constructors and static methods...
 ```
 #### <a name="d.usage"></a>Usage and Structure
-``` chsarp
+``` csharp
 var result = new Result<object>(new { Id = "1", Name = "Tulio" });
 ```
 ``` json
@@ -130,7 +130,7 @@ var result = new Result<object>(new { Id = "1", Name = "Tulio" });
 }
 ```
 
-``` chsarp
+``` csharp
 var intResult = new Result<int>(10);
 ```
 ``` json 
@@ -193,9 +193,7 @@ var errorListResult = new ListResult<int>("Error message");
 
 ### <a name="paginated"></a>Paginated result
 
-Let's assume you paginate a 10 itens list in lists of 3 itens, how do you return all of this informations?
-
-With PaginatedResult you can return the paginated list, wrapped with some paginated info:
+With **PaginatedResult** you can return the paginated list, wrapped with some pagination info.
 
 #### <a name="p.params"></a>Parameters and Usage
 
