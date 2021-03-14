@@ -200,7 +200,7 @@ With **PaginatedResult** you can return the paginated list, wrapped with some pa
 **Data:** The paginated list\
 **Total:** The total of itens in the list you are paginating\
 **CurrentPage:** The current page beeing returned (should start at 1)\
-**PageSize:** The expected page **(even if data count is less then expected)** \
+**PageSize:** The expected page **(even if data count is less then expected)**
 
 ``` csharp
 var paginated = new PaginatedResult<int>(
