@@ -24,9 +24,5 @@ Install-Package TulioPaim.Results
 
  <a name="u.samples"></a>Checkout the [samples project](https://github.com/tuliopaim/TulioPaim.Results/tree/master/samples/TulioPaim.Results.Samples/) for examples
 
- <a name="u.wiki"></a>Checkout the [Wiki](https://github.com/tuliopaim/Results/wiki/Usage)
-
-    
-
-
-
+ <a name="u.wiki"></a>Checkout the [Wiki](https://github.com/tuliopaim/Results/wiki/)
+ 
