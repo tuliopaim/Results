@@ -11,19 +11,19 @@ namespace TulioPaim.Results
         /// </summary>
         /// <param name="data">IEnumerable<T> results</param>
         /// <param name="total">Total items</param>
-        /// <param name="page">Page number (>=1)</param>
+        /// <param name="currentPage">Page number (>=1)</param>
         /// <param name="pageSize">Page Size</param>
         public PaginatedResult(
             IEnumerable<T> data,
             long total,
-            int page,
+            int currentPage,
             int pageSize,
             string message = null)
             : base(true, message)
         {
             Data = data ?? new List<T>();
             Total = total;
-            Page = page;
+            CurrentPage = currentPage;
             PageSize = pageSize;
         }
 
@@ -41,22 +41,23 @@ namespace TulioPaim.Results
 
         public PaginatedResult(Exception ex) : base(ex)
         {
+            Data = new List<T>();
         }
 
-        public int PageSize { get; private set; }
-
-        public int Page { get; private set; }
-
         public long Total { get; private set; }
+
+        public int CurrentPage { get; private set; }
+
+        public int PageSize { get; private set; }
 
         public int TotalPages =>
             PageSize == 0
             ? 0
             : (int)Math.Ceiling(Total / (double)PageSize);
 
-        public bool HasPrevPage => Page > 1;
+        public bool HasPrevPage => CurrentPage > 1;
 
-        public bool HasNextPage => Page < TotalPages;
+        public bool HasNextPage => CurrentPage < TotalPages;
 
         public override void AddError(string error)
         {
@@ -73,7 +74,7 @@ namespace TulioPaim.Results
             }
 
             PageSize = default;
-            Page = default;
+            CurrentPage = default;
             Total = default;
         }
 
