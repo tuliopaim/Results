@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Collections.Generic;
 
 namespace TulioPaim.Results.Samples
 {
@@ -24,7 +22,7 @@ namespace TulioPaim.Results.Samples
             PrintFunctionName(nameof(ResultSamples.PositiveOnlyCalc));
             Serialize(ResultSamples.PositiveOnlyCalc(2, 3));
 
-            PrintFunctionName(nameof(ResultSamples.PositiveOnlyCalc));            
+            PrintFunctionName(nameof(ResultSamples.PositiveOnlyCalc));
             Serialize(ResultSamples.PositiveOnlyCalc(4, -3));
 
             PrintFunctionName(nameof(ResultSamples.NegativeOnlyCalc));

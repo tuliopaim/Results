@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TulioPaim.Results.Samples
 {
@@ -17,7 +15,7 @@ namespace TulioPaim.Results.Samples
         {
             return Names;
         }
-        
+
         public static string SelectFirstName()
         {
             return Names.FirstOrDefault();
@@ -30,7 +28,7 @@ namespace TulioPaim.Results.Samples
 
         public static IEnumerable<string> SelectPaginated(int page, int pageSize)
         {
-            return Names.Skip((page - 1)* pageSize).Take(pageSize);
+            return Names.Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         public static Result CheckIfIsOdd()

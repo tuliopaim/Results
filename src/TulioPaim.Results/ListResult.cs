@@ -19,7 +19,7 @@ namespace TulioPaim.Results
         public ListResult(string error, string message = null) : base(error, message)
         {
             Data = new List<T>();
-        }       
+        }
 
         public ListResult(Exception ex) : base(ex)
         {

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TulioPaim.Results.Samples
 {
@@ -51,7 +47,7 @@ namespace TulioPaim.Results.Samples
         {
             var page = 1;
             var pageSize = 2;
-            
+
             var totalInDb = FakeService.CountNames();
 
             var result = FakeService.SelectPaginated(page, pageSize);
@@ -88,7 +84,7 @@ namespace TulioPaim.Results.Samples
 
                 return Result<string>.Success(name);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return new Result<string>(ex);
             }

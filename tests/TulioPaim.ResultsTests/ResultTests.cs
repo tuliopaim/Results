@@ -44,7 +44,6 @@ namespace TulioPaim.ResultsTests
             Assert.NotNull(errorResult4.Errors);
         }
 
-
         [Fact]
         public void ShouldNotBeSucceededWhenAddError()
         {
