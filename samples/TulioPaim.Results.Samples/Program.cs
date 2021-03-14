@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.Json;
 
 namespace TulioPaim.Results.Samples
@@ -33,6 +34,37 @@ namespace TulioPaim.Results.Samples
 
             PrintFunctionName(nameof(ResultSamples.SelectNameByIndex));
             Serialize(ResultSamples.SelectNameByIndex(15));
+
+            Serialize(new Result(true));
+
+            try
+            {
+                var zero = 0;
+                var x = 1 / zero;
+            }
+            catch(Exception ex)
+            {
+                var result = new Result(ex);
+
+                Serialize(result);
+            }
+
+            Serialize(new Result());
+            Serialize(new Result<object>(new { Id = "1", Name = "Tulio" }));
+            Serialize(new Result<int>("Error message"));
+            Serialize(new ListResult<int>(new List<int> { 1, 2 ,3}));
+            Serialize(new ListResult<int>("Error message"));
+
+            var paginated = new PaginatedResult<int>(
+                data: new List<int> { 1, 2, 3 },
+                total: 100,
+                currentPage: 1,
+                pageSize: 3,
+                message: "A 100 itens list in pages of 3 itens");
+
+            Serialize(paginated);
+
+            Serialize(new PaginatedResult<int>("Error"));
 
             Console.ReadLine();
         }
