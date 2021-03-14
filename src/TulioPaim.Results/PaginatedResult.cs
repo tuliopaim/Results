@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace TulioPaim.Results
 {
-    public class PaginatedResult<T> : ResultBase
+    public class PaginatedResult<T> : Result
     {
         /// <summary>
         /// Create a PaginatedResult
@@ -19,7 +19,7 @@ namespace TulioPaim.Results
             int page,
             int pageSize,
             string message = null)
-            : base(message)
+            : base(true, message)
         {
             Data = data ?? new List<T>();
             Total = total;
@@ -60,29 +60,21 @@ namespace TulioPaim.Results
 
         public override void AddError(string error)
         {
-            Succeeded = false;
+            base.AddError(error);
+
             ClearData();
-            Errors.Add(error);
         }
 
         private void ClearData()
         {
-            if (HasData())
+            if (Data.Any())
             {
                 Data = new List<T>();
-                PageSize = default;
-                Page = default;
-                Total = default;
             }
-        }
 
-        private bool HasData()
-        {
-            return Data.Any()
-                || PageSize != default
-                || Page != default
-                || Total != default
-                || TotalPages != default;
+            PageSize = default;
+            Page = default;
+            Total = default;
         }
 
         public static PaginatedResult<T> SuccessResult(
@@ -95,12 +87,12 @@ namespace TulioPaim.Results
             return new PaginatedResult<T>(data, total, page, pageSize, message);
         }
 
-        public static PaginatedResult<T> Error(string error, string message = null)
+        public new static PaginatedResult<T> Error(string error, string message = null)
         {
             return new PaginatedResult<T>(error, message);
         }
 
-        public static PaginatedResult<T> Error(List<string> errors, string message = null)
+        public new static PaginatedResult<T> Error(List<string> errors, string message = null)
         {
             return new PaginatedResult<T>(errors, message);
         }
