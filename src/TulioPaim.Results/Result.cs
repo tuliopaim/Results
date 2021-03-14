@@ -22,7 +22,7 @@ namespace TulioPaim.Results
         {
         }
 
-        public Result(Exception exception) : this(exception.ToString())
+        public Result(Exception exception) : this(exception.Message)
         {
         }
 
