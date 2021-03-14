@@ -6,13 +6,6 @@ namespace TulioPaim.Results
 {
     public class PaginatedResult<T> : Result
     {
-        /// <summary>
-        /// Create a PaginatedResult
-        /// </summary>
-        /// <param name="data">IEnumerable<T> results</param>
-        /// <param name="total">Total items</param>
-        /// <param name="currentPage">Page number (>=1)</param>
-        /// <param name="pageSize">Page Size</param>
         public PaginatedResult(
             IEnumerable<T> data,
             long total,
@@ -26,8 +19,6 @@ namespace TulioPaim.Results
             CurrentPage = currentPage;
             PageSize = pageSize;
         }
-
-        public IEnumerable<T> Data { get; set; }
 
         public PaginatedResult(string error, string message = null) : base(error, message)
         {
@@ -44,14 +35,15 @@ namespace TulioPaim.Results
             Data = new List<T>();
         }
 
+        public IEnumerable<T> Data { get; private set; }
+
         public long Total { get; private set; }
 
         public int CurrentPage { get; private set; }
 
         public int PageSize { get; private set; }
 
-        public int TotalPages =>
-            PageSize == 0
+        public int TotalPages => PageSize == 0
             ? 0
             : (int)Math.Ceiling(Total / (double)PageSize);
 
