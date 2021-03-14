@@ -89,7 +89,6 @@ namespace TulioPaim.ResultsTests
 
             errorResult2.AddError(error);
 
-
             Assert.Equal(3, errorResult.Errors.Count);
             Assert.Equal(2, errorResult2.Errors.Count);
         }
@@ -100,8 +99,10 @@ namespace TulioPaim.ResultsTests
             var exception = new Exception("Exception message");
 
             var result = new Result(exception);
+            var result2 = Result.Error(exception);
 
             Assert.False(result.Succeeded);
+            Assert.False(result2.Succeeded);
         }
 
         [Fact]
@@ -110,8 +111,10 @@ namespace TulioPaim.ResultsTests
             var exception = new Exception("Exception");
 
             var result = new Result(exception);
+            var result2 = Result.Error(exception);
 
             Assert.Single(result.Errors);
+            Assert.Single(result2.Errors);
         }
     }
 }

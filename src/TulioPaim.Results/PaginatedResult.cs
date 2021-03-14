@@ -96,5 +96,10 @@ namespace TulioPaim.Results
         {
             return new PaginatedResult<T>(errors, message);
         }
+
+        public new static PaginatedResult<T> Error(Exception exception)
+        {
+            return new PaginatedResult<T>(exception);
+        }
     }
 }

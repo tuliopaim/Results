@@ -57,5 +57,10 @@ namespace TulioPaim.Results
         {
             return new ListResult<T>(errors, message);
         }
+
+        public new static ListResult<T> Error(Exception exception)
+        {
+            return new ListResult<T>(exception);
+        }
     }
 }

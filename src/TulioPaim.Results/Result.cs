@@ -52,5 +52,10 @@ namespace TulioPaim.Results
         {
             return new Result(errors, message);
         }
+
+        public static Result Error(Exception exception)
+        {
+            return new Result(exception);
+        }
     }
 }
