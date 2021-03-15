@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>tuliopaim</Authors>
+    <Company />
+    <Description>Use ReturnResult in your controller to return a Ok() or BadRequest() depending on the Result</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\src\TulioPaim.Results\TulioPaim.Results.csproj" />
+  </ItemGroup>
+
+</Project>

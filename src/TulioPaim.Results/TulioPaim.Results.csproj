@@ -3,9 +3,10 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>    
     <PackageId>TulioPaim.Results</PackageId>
-    <Version>1.5.0</Version>
-    <Authors>tulio_paim</Authors>
-    <Company>tulio_paim</Company>
+	<Description>A generic result wrapper. Result, Result&lt;T&gt; ListResult&lt;T&gt; and PaginatedResult&lt;T&gt;</Description>
+    <Version>1.5.2</Version>
+    <Authors>tuliopaim</Authors>
+	<ProjectUrl>https://github.com/tuliopaim/Results</ProjectUrl>
   </PropertyGroup>
 	
 </Project>
