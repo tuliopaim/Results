@@ -28,7 +28,7 @@ namespace TulioPaim.Results.Samples
 
         public static IEnumerable<string> SelectPaginated(int page, int pageSize)
         {
-            return Names.Skip((page - 1) * pageSize).Take(pageSize);
+            return Names.Skip(page * pageSize).Take(pageSize);
         }
 
         public static Result CheckIfIsOdd()

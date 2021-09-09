@@ -45,7 +45,7 @@ namespace TulioPaim.Results.Samples
 
         public static PaginatedResult<string> SelectPaginated()
         {
-            var page = 1;
+            var page = 0;
             var pageSize = 2;
 
             var totalInDb = FakeService.CountNames();
