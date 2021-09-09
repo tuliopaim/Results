@@ -54,6 +54,10 @@ namespace TulioPaim.Results
         public bool HasPrevPage => CurrentPage >= 1;
 
         public bool HasNextPage => CurrentPage < LastPage;
+
+        public int PrevPage => !HasPrevPage ? FirstPage : CurrentPage - 1;
+
+        public int NextPage => !HasNextPage ? LastPage : CurrentPage + 1;
         
         public override void AddError(string error)
         {
