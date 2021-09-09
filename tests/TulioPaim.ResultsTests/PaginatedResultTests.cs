@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using TulioPaim.Results;
 using Xunit;
 
@@ -122,6 +124,42 @@ namespace TulioPaim.ResultsTests
             var result = PaginatedResult<int>.Success(new List<int> { 1 }, total, 1, pageSize);
 
             Assert.Equal(result.LastPage, lastPage);
+        }
+
+        [Theory]
+        [InlineData(10, 3, 0, true)]
+        [InlineData(10, 3, 1, true)]
+        [InlineData(10, 3, 2, true)]
+        [InlineData(10, 3, 3, false)]
+        public void ShouldCalculateHasNextPageCorrectly(int total, int pageSize, int currentPage, bool hasNextPage)
+        {
+            var totalList = new List<int>();
+            
+            for (var i = 0; i < total; i++) totalList.Add(i);
+
+            var paginatedList = totalList.Skip(currentPage * pageSize).Take(pageSize);
+
+            var paginatedResult = new PaginatedResult<int>(paginatedList, total, currentPage, pageSize);
+
+            Assert.Equal(hasNextPage, paginatedResult.HasNextPage);
+        }
+
+        [Theory]
+        [InlineData(10, 3, 0, false)]
+        [InlineData(10, 3, 1, true)]
+        [InlineData(10, 3, 2, true)]
+        [InlineData(10, 3, 3, true)]
+        public void ShouldCalculateHasPreviousPageCorrectly(int total, int pageSize, int currentPage, bool hasPreviousPage)
+        {
+            var totalList = new List<int>();
+            
+            for (var i = 0; i < total; i++) totalList.Add(i);
+
+            var paginatedList = totalList.Skip(currentPage * pageSize).Take(pageSize);
+
+            var paginatedResult = new PaginatedResult<int>(paginatedList, total, currentPage, pageSize);
+
+            Assert.Equal(hasPreviousPage, paginatedResult.HasPrevPage);
         }
     }
 }
