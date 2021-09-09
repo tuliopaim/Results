@@ -9,7 +9,7 @@ namespace TulioPaim.ResultsTests
         [Fact]
         public void ShouldNotBeSucceededWhenErrorResult()
         {
-            PaginatedResult<int> result = PaginatedResult<int>.Error("erro");
+            var result = PaginatedResult<int>.Error("erro");
 
             Assert.False(result.Succeeded);
         }
@@ -18,11 +18,7 @@ namespace TulioPaim.ResultsTests
         public void ShouldBeSucceededWhenSuccessResult()
         {
             var result = PaginatedResult<int>
-                .Success(
-                new List<int>() { 1 },
-                1,
-                1,
-                1);
+                .Success(new List<int>() { 1 }, 1, 1, 1);
 
             Assert.True(result.Succeeded);
         }
@@ -30,18 +26,12 @@ namespace TulioPaim.ResultsTests
         [Fact]
         public void DataShouldNeverBeNull()
         {
-            var result = PaginatedResult<int>
-                .Success(
-                null,
-                1,
-                1,
-                1);
+            var result = PaginatedResult<int>.Success(null, 1, 1, 1);
 
             var result2 = PaginatedResult<int>
                 .Error("Error 1");
 
-            var result3 = PaginatedResult<int>
-                .Error(new List<string> { "Erro 1, Erro 2" });
+            var result3 = PaginatedResult<int>.Error(new List<string> { "Erro 1, Erro 2" });
 
             Assert.NotNull(result.Data);
             Assert.NotNull(result2.Data);
@@ -51,18 +41,9 @@ namespace TulioPaim.ResultsTests
         [Fact]
         public void ShouldNotBeSucceededWhenAddError()
         {
-            var result = PaginatedResult<int>
-               .Success(
-               null,
-               1,
-               1,
-               1);
+            var result = PaginatedResult<int>.Success(null, 1, 1, 1);
 
-            var result2 = new PaginatedResult<int>(
-               null,
-               1,
-               1,
-               1);
+            var result2 = new PaginatedResult<int>(null, 1, 1, 1);
 
             result.AddError("Error");
             result2.AddError("Error");
@@ -74,18 +55,9 @@ namespace TulioPaim.ResultsTests
         [Fact]
         public void ShouldAddErrorsCorrectly()
         {
-            var result = PaginatedResult<int>
-                  .Success(
-                  null,
-                  1,
-                  1,
-                  1);
+            var result = PaginatedResult<int>.Success(null, 1, 1, 1);
 
-            var result2 = new PaginatedResult<int>(
-               null,
-               1,
-               1,
-               1);
+            var result2 = new PaginatedResult<int>(null, 1, 1, 1);
 
             result.AddError("Error");
             result.AddError("Error");
@@ -115,18 +87,10 @@ namespace TulioPaim.ResultsTests
         public void ShouldBeEmptyWhenAddError()
         {
             var list = new List<int> { 1, 2, 3 };
-            var result = PaginatedResult<int>
-                  .Success(
-                  list,
-                  3,
-                  1,
-                  3);
 
-            var result2 = new PaginatedResult<int>(
-               list,
-               3,
-               1,
-               3);
+            var result = PaginatedResult<int>.Success(list, 3, 1, 3);
+
+            var result2 = new PaginatedResult<int>(list, 3, 1, 3);
 
             result.AddError("Error");
             result2.AddError("Error");
@@ -142,14 +106,22 @@ namespace TulioPaim.ResultsTests
         [InlineData(540, 20, 27)]
         public void ShouldCalculateTotalPagesCorrectly(long total, int pageSize, int totalPages)
         {
-            var result = PaginatedResult<int>
-                .Success(
-                new List<int>() { 1 },
-                total,
-                1,
-                pageSize);
+            var result = PaginatedResult<int>.Success(new List<int> { 1 }, total, 1, pageSize);
 
             Assert.Equal(result.TotalPages, totalPages);
+        }
+
+        [Theory]
+        [InlineData(0, 1, 0)]
+        [InlineData(1, 1, 0)]
+        [InlineData(2, 1, 1)]
+        [InlineData(100, 10, 9)]
+        [InlineData(540, 20, 26)]
+        public void ShouldCalculateLastPageCorrectly(long total, int pageSize, int lastPage)
+        {
+            var result = PaginatedResult<int>.Success(new List<int> { 1 }, total, 1, pageSize);
+
+            Assert.Equal(result.LastPage, lastPage);
         }
     }
 }

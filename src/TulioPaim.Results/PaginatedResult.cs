@@ -51,6 +51,10 @@ namespace TulioPaim.Results
 
         public bool HasNextPage => CurrentPage < TotalPages;
 
+        public int FirstPage => 0;
+
+        public int LastPage => TotalPages == 0 ? 0 : TotalPages - 1;
+
         public override void AddError(string error)
         {
             base.AddError(error);
