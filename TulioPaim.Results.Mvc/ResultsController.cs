@@ -41,6 +41,8 @@ namespace TulioPaim.Results.Mvc
                 return Ok(result);
             }
 
+
+
             return BadRequest(result);
         }
     }
